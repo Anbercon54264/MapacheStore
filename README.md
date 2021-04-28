@@ -1,10 +1,12 @@
 Colecciones de MapacheStore
 
 Usuario
-nombres : string
-apellidos : string
-edad : number
-rol : string
+nombres: string
+apellidos: string
+edad: number
+rol: string
+correo: string
+pass: string
 
 Producto
 nombre: string
