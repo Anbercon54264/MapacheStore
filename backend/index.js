@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 
 //rutas para las api
 app.use("/api", Usuario);
-// app.use("/api", Producto);
-// app.use("/api", Stock);
+app.use("/api", Producto);
+app.use("/api", Stock);
 
 module.exports = app;

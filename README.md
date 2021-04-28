@@ -14,5 +14,5 @@ descripcion: string
 precio : number
 
 Stock
-idProductos: ObjectId
+idProducto: ObjectId
 cantidad: number

@@ -22,7 +22,7 @@ const registrarUsuario = (req, res) => {
         usuario.edad = params.edad;
         usuario.rol = params.rol;
         usuario.correo = params.correo;
-        usuario.pass = params.pass;
+        usuario.pass = hash;
         usuario.save((err, guardaUsuario) => {
           if (err) {
             res.status(500).send({ err: "No se registro el usuario" });
