@@ -1,8 +1,10 @@
 let express = require("express");
 let Producto = require("../Controllers/producto");
 let api = express.Router();
+let multiparty = require("connect-multiparty")
+let path = multiparty({cargas: "./uploads/imgProductos/"})
 
-api.post("/producto/registarProducto", Producto.registarProducto);
+api.post("/producto/registarProducto",path, Producto.registarProducto);
 
 api.get("/producto/:id", Producto.buscarProductos);
 

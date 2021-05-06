@@ -56,7 +56,7 @@ const inicioSesion = (req, res) => {
               } else {
                 res
                   .status(200)
-                  .send({ usuario: datosUsuario, mensaje: "Sin TOKEN" });
+                  .send({ usuario: obtieneDatosUsuario, mensaje: "Sin TOKEN" });
               }
             } else {
               res.status(401).send({ mensaje: "correo o password incorrecto" });

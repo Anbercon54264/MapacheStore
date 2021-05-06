@@ -1,23 +1,40 @@
+let mongoose = require("mongoose");
 let Producto = require("../Models/producto");
+let fs = require("fs");
+let path = require("path");
+let moment = require("moment");
 
 const registarProducto = (req, res) => {
   let params = req.body;
   let producto = new Producto();
 
-  producto.nombre = params.nombre;
-  producto.descripcion = params.descripcion;
-  producto.precio = params.precio;
-  producto.save((err, guardarProducto) => {
-    if (err) {
-      res.status(500).send({ mensaje: "Error al conectar" });
-    } else {
-      if (guardarProducto) {
-        res.status(200).send({ producto: guardarProducto });
+  if (params.nombre && params.descripcion && params.precio) {
+    let imagenPath = req.files.imagen.path;
+    let nameImg = moment().unix();
+    let rutaServer =
+      "./uploads/imgProductos/" + nameImg + path.extname(imagenPath);
+    fs.createReadStream(imagenPath).pipe(fs.createWriteStream(rutaServer));
+    let dbImg = nameImg + path.extname(imagenPath);
+
+    producto.nombre = params.nombre;
+    producto.descripcion = params.descripcion;
+    producto.precio = params.precio;
+    producto.imagen = dbImg;
+    console.log(rutaServer)
+    producto.save((err, guardarProducto) => {
+      if (err) {
+        res.status(500).send({ mensaje: "Error al conectar" });
       } else {
-        res.status(401).send({ mensaje: "No se pudo registrar el producto" });
+        if (guardarProducto) {
+          res.status(200).send({ producto: guardarProducto });
+        } else {
+          res.status(401).send({ mensaje: "No se pudo registrar el producto" });
+        }
       }
-    }
-  });
+    });
+  } else {
+    res.status(401).send({ mensaje: "Falto alguno de los datos" });
+  }
 };
 
 const buscarProductos = (req, res) => {

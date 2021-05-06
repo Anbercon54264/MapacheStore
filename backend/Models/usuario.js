@@ -10,4 +10,4 @@ let usuarioSchema = Schema({
   pass: String,
 });
 
-module.exports = mongoose.model("usuario",usuarioSchema)
+module.exports = mongoose.model("usuario", usuarioSchema);

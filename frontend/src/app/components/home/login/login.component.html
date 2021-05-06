@@ -1,0 +1,19 @@
+<main class="form-signin">
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="box">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <h1>Login</h1>
+                    <input type="email" placeholder="name@example.com" #correo="ngModel" name="correo"
+                        [(ngModel)]="usuario.correo" required>
+                    <input type="password" placeholder="Password" #pass="ngModel" name="pass" [(ngModel)]="usuario.pass"
+                        required>
+                    <a class="forgot text-muted" href="#">Forgot password?</a>
+                    <input type="submit" name="" value="Login" href="#">
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</main>
